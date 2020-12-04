@@ -2,11 +2,11 @@
 pragma solidity >=0.6.0;
 
 contract MultiSigWallet {
-	event deposit(address sender, uint value);
-	event transactionAdded(address owner, uint txID, address receiver, uint amount, string);
-	event transactionConfirmation(address owner, uint txID, string);
-	event transactionExecuted(address owner, uint txID, address receiver, uint amount, string);
-	event transactionRevoked(address owner, uint txID, string);
+	event deposit(address indexed sender, uint value);
+	event transactionAdded(address indexed owner, uint indexed txID, address indexed receiver, uint amount, string);
+	event transactionConfirmation(address indexed owner, uint indexed txID, string);
+	event transactionExecuted(address indexed owner, uint indexed txID, address indexed receiver, uint amount, string);
+	event transactionRevoked(address indexed owner, uint indexed txID, string);
 
 	address[] public owners;
 	uint public minimumConfirmations;
