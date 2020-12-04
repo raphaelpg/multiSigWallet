@@ -57,6 +57,7 @@ contract MultiSigWallet {
 
 	function addTransaction(address payable _receiver, uint _value) public onlyOwner {
 		require(_receiver != address(0), "Address 0");
+		require(_value > 0, "Insufficient value");
 		
 		uint txID = pendingTransactions.length;
 		
@@ -101,8 +102,8 @@ contract MultiSigWallet {
 
 		Transaction storage thisTransaction = pendingTransactions[_txID];
 		require(!thisTransaction.executed, 'Transaction already executed');
-		require(thisTransaction.confirmed[msg.sender], 'Transaction already revoked');
 		require(thisTransaction.confirmations > 0, "Confirmations already at 0");
+		require(thisTransaction.confirmed[msg.sender], 'Transaction not confirmed');
 
 		thisTransaction.confirmed[msg.sender] = false;
 		thisTransaction.confirmations -= 1;
