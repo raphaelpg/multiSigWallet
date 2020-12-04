@@ -23,7 +23,6 @@ contract MultiSigWallet {
 	mapping(address => bool) public isOwner;
 	
 	constructor (address[] memory _owners, uint _minimumConfirmations) public {
-		require(_owners.length <= 3, 'Too many owners');
 		require(_owners.length > 0, 'Invalid owners number');
 		require(_minimumConfirmations <= _owners.length, 'Invalid minimumConfirmations value');
 		require(_minimumConfirmations > 0, 'Invalid minimumConfirmations value');

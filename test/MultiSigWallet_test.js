@@ -7,14 +7,9 @@ contract("MultiSigWallet", async (accounts) => {
 	const owners = accounts.splice(0, 3)
 	const receiver = accounts[0]
 	const address0 = "0x0000000000000000000000000000000000000000"
-	const tooManyOwners = accounts.splice(0, 4)
 	const minimumConfirmation = new BN(2)
 	
 	describe("MultiSigWallet deployment testing", () => {
-		it("deploy contract revert on too many addresses", async() => {
-			await expectRevert(MultiSigWallet.new(tooManyOwners, minimumConfirmation), 'Too many owners')
-		})
-
 		it("deploy contract revert with no addresses provided", async() => {
 			const emptyArray = []
 			await expectRevert(MultiSigWallet.new(emptyArray, minimumConfirmation), 'Invalid owners number')
