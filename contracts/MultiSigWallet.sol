@@ -8,9 +8,6 @@ contract MultiSigWallet {
 	event transactionExecuted(address indexed owner, uint indexed txID, address indexed receiver, uint amount, string);
 	event transactionRevoked(address indexed owner, uint indexed txID, string);
 
-	address[] public owners;
-	uint public minimumConfirmations;
-
 	struct Transaction {
 		address receiver;
 		uint value;
@@ -19,6 +16,8 @@ contract MultiSigWallet {
 		uint confirmations;
 	}
 
+	address[] public owners;
+	uint public minimumConfirmations;
 	Transaction[] public pendingTransactions;
 	mapping(address => bool) public isOwner;
 	
